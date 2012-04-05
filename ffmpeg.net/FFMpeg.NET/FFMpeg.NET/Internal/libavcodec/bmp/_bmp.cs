@@ -5,30 +5,10 @@ using System.Text;
 
 namespace FFMpeg.NET.Internal.libavcodec
 {
-//typedef struct BMPContext {
-//    AVFrame picture;
-//} BMPContext;
-
-//typedef enum {
-//    BMP_RGB         =0,
-//    BMP_RLE8        =1,
-//    BMP_RLE4        =2,
-//    BMP_BITFIELDS   =3,
-//} BiCompression;
-
 //#include "avcodec.h"
 //#include "bytestream.h"
 //#include "bmp.h"
 //#include "msrledec.h"
-
-//static av_cold int bmp_decode_init(AVCodecContext *avctx){
-//    BMPContext *s = avctx->priv_data;
-
-//    avcodec_get_frame_defaults(&s->picture);
-//    avctx->coded_frame = &s->picture;
-
-//    return 0;
-//}
 
 //static int bmp_decode_frame(AVCodecContext *avctx,
 //                            void *data, int *data_size,
@@ -334,26 +314,12 @@ namespace FFMpeg.NET.Internal.libavcodec
 //    return buf_size;
 //}
 
-//static av_cold int bmp_decode_end(AVCodecContext *avctx)
-//{
-//    BMPContext* c = avctx->priv_data;
-
-//    if (c->picture.data[0])
-//        avctx->release_buffer(avctx, &c->picture);
-
-//    return 0;
-//}
 
 //AVCodec ff_bmp_decoder = {
-//    .name           = "bmp",
 //    .type           = AVMEDIA_TYPE_VIDEO,
-//    .id             = CODEC_ID_BMP,
 //    .priv_data_size = sizeof(BMPContext),
-//    .init           = bmp_decode_init,
-//    .close          = bmp_decode_end,
 //    .decode         = bmp_decode_frame,
 //    .capabilities   = CODEC_CAP_DR1,
-//    .long_name = NULL_IF_CONFIG_SMALL("BMP image"),
 //};
 
 }
