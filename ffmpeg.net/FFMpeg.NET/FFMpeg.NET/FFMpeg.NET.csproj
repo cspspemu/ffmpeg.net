@@ -40,8 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVAudioServiceType.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVChromaLocation.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVColorPrimaries.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVColorRange.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVColorSpace.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVColorTransferCharacteristic.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\AVDiscard.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\CodecID.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\Global.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\Motion_Est_ID.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\RcOverride.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\_avcodec.cs" />
+    <Compile Include="Internal\libavcodec\bmp\bmp.cs" />
+    <Compile Include="Internal\libavcodec\bmp\_bmp.cs" />
+    <Compile Include="Internal\libavutil\common\common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Internal\libavformat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
