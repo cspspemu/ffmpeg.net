@@ -75,22 +75,19 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			Pointer<byte> buf0 = buf;
 
 			if (buf_size < 14){
-				//av_log(avctx, AV_LOG_ERROR, "buf size too small (%d)\n", buf_size);
-				throw(new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "buf size too small (%d)\n", buf_size);
 				return -1;
 			}
 
 			if (bytestream.get_byte(ref buf) != 'B' || bytestream.get_byte(ref buf) != 'M') {
-				//av_log(avctx, AV_LOG_ERROR, "bad magic number\n");
-				throw (new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "bad magic number\n");
 				return -1;
 			}
 
 			fsize = bytestream.get_le32(ref buf);
 
 			if (buf_size < fsize){
-				//av_log(avctx, AV_LOG_ERROR, "not enough data (%d < %d), trying to decode anyway\n", buf_size, fsize);
-				throw (new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "not enough data (%d < %d), trying to decode anyway\n", buf_size, fsize);
 				fsize = (uint)buf_size;
 			}
 
@@ -101,8 +98,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			ihsize = bytestream.get_le32(ref buf);       /* more header size */
 
 			if (ihsize + 14 > hsize){
-				//av_log(avctx, AV_LOG_ERROR, "invalid header size %d\n", hsize);
-				throw(new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "invalid header size %d\n", hsize);
 				return -1;
 			}
 
@@ -114,8 +110,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 
 			if (fsize <= hsize)
 			{
-				//av_log(avctx, AV_LOG_ERROR, "declared file size is less than header size (%d < %d)\n", fsize, hsize);
-				throw(new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "declared file size is less than header size (%d < %d)\n", fsize, hsize);
 				return -1;
 			}
 
@@ -134,15 +129,13 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 					height = (int)bytestream.get_le16(ref buf);
 				break;
 				default:
-					//av_log(avctx, AV_LOG_ERROR, "unsupported BMP file, patch welcome\n");
-					throw(new NotImplementedException());
+					log.av_log(avctx, log.AV_LOG_ERROR, "unsupported BMP file, patch welcome\n");
 					return -1;
 			}
 
 			if (bytestream.get_le16(ref buf) != 1) /* planes */
 			{
-				//av_log(avctx, AV_LOG_ERROR, "invalid BMP header\n");
-				throw(new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "invalid BMP header\n");
 				return -1;
 			}
 
@@ -159,8 +152,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 
 			if (comp != BiCompression.BMP_RGB && comp != BiCompression.BMP_BITFIELDS && comp != BiCompression.BMP_RLE4 && comp != BiCompression.BMP_RLE8)
 			{
-				//av_log(avctx, AV_LOG_ERROR, "BMP coding %d not supported\n", comp);
-				throw(new NotImplementedException());
+				log.av_log(avctx, log.AV_LOG_ERROR, "BMP coding %d not supported\n", comp);
 				return -1;
 			}
 
@@ -207,8 +199,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 					}
 					else
 					{
-						//av_log(avctx, AV_LOG_ERROR, "Unknown bitfields %0X %0X %0X\n", rgb[0], rgb[1], rgb[2]);
-						throw (new NotImplementedException());
+						log.av_log(avctx, log.AV_LOG_ERROR, "Unknown bitfields %0X %0X %0X\n", rgb[0], rgb[1], rgb[2]);
 						//return AVERROR(EINVAL);
 						throw (new NotImplementedException());
 					}
@@ -233,8 +224,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 					else if (rgb[0] == 0x0F00 && rgb[1] == 0x00F0 && rgb[2] == 0x000F) avctx.pix_fmt = PixelFormat.PIX_FMT_RGB444;
 					else
 					{
-						//av_log(avctx, AV_LOG_ERROR, "Unknown bitfields %0X %0X %0X\n", rgb[0], rgb[1], rgb[2]);
-						throw (new NotImplementedException());
+						log.av_log(avctx, log.AV_LOG_ERROR, "Unknown bitfields %0X %0X %0X\n", rgb[0], rgb[1], rgb[2]);
 						//return AVERROR(EINVAL);
 						throw (new NotImplementedException());
 					}
@@ -258,21 +248,19 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    }
 				else
 				{
-			        //av_log(avctx, AV_LOG_ERROR, "Unknown palette for %d-colour BMP\n", 1<<depth);
+			        log.av_log(avctx, log.AV_LOG_ERROR, "Unknown palette for %d-colour BMP\n", 1<<depth);
 					throw (new NotImplementedException());
 					return -1;
 			    }
 			    break;
 			default:
-			    //av_log(avctx, AV_LOG_ERROR, "depth %d not supported\n", depth);
-				throw(new NotImplementedException());
+			    log.av_log(avctx, log.AV_LOG_ERROR, "depth %d not supported\n", depth);
 			    return -1;
 			}
 
 			if (avctx.pix_fmt == PixelFormat.PIX_FMT_NONE)
 			{
-			    //av_log(avctx, AV_LOG_ERROR, "unsupported pixel format\n");
-				throw(new NotImplementedException());
+			    log.av_log(avctx, log.AV_LOG_ERROR, "unsupported pixel format\n");
 			    return -1;
 			}
 
@@ -303,8 +291,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 
 			if (n * avctx.height > dsize && comp != BiCompression.BMP_RLE4 && comp != BiCompression.BMP_RLE8)
 			{
-			    //av_log(avctx, AV_LOG_ERROR, "not enough data (%d < %d)\n", dsize, n * avctx->height);
-				throw(new NotImplementedException());
+			    log.av_log(avctx, log.AV_LOG_ERROR, "not enough data (%d < %d)\n", dsize, n * avctx.height);
 			    return -1;
 			}
 
@@ -340,8 +327,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			        t = (int)bytestream.get_le32(ref buf);
 			        if (t < 0 || t > (int)(1 << depth))
 					{
-			            //av_log(avctx, AV_LOG_ERROR, "Incorrect number of colors - %X for bitdepth %d\n", t, depth);
-						throw(new NotImplementedException());
+			            log.av_log(avctx, log.AV_LOG_ERROR, "Incorrect number of colors - %X for bitdepth %d\n", t, depth);
 			        }
 					else if (t != 0)
 					{
@@ -445,8 +431,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			        }
 			        break;
 			    default:
-			        //av_log(avctx, AV_LOG_ERROR, "BMP decoder is broken\n");
-					throw(new NotImplementedException());
+			        log.av_log(avctx, log.AV_LOG_ERROR, "BMP decoder is broken\n");
 			        return -1;
 			    }
 			}

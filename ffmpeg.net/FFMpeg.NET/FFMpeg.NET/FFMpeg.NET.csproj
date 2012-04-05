@@ -75,9 +75,12 @@
     <Compile Include="Internal\libavutil\bswap.cs" />
     <Compile Include="Internal\libavutil\bytestream.cs" />
     <Compile Include="Internal\libavutil\common\common.cs" />
+    <Compile Include="Internal\libavutil\log.cs" />
     <Compile Include="Internal\libavutil\pixfmt.cs" />
+    <Compile Include="Internal\libavutil\_log.cs" />
     <Compile Include="Internal\libavutil\_pixfmt.cs" />
     <Compile Include="Internal\Pointer.cs" />
+    <Compile Include="Internal\StructUtils.cs" />
     <Compile Include="Internal\Unimplemented.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
