@@ -42,6 +42,7 @@ namespace FFMpeg.NET.Internal.libavutil
 			}
 			finally
 			{
+				//Pointer.Offset++;
 				Pointer++;
 			}
 		}

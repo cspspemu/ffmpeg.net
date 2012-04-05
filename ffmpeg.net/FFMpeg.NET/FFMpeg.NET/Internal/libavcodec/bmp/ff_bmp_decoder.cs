@@ -5,6 +5,7 @@ using System.Text;
 using FFMpeg.NET.Internal.libavcodec.avcodec;
 using FFMpeg.NET.Internal.libavutil;
 using System.Runtime.InteropServices;
+using FFMpeg.NET.Internal.libavutil.avutil;
 
 namespace FFMpeg.NET.Internal.libavcodec.bmp
 {
@@ -14,6 +15,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 		override public string long_name { get { return "BMP image"; } }
 		override public CodecID id { get { return CodecID.CODEC_ID_BMP; } }
 		override public uint capabilities { get { return Constants.CODEC_CAP_DR1; } }
+		override public AVMediaType type { get { return AVMediaType.AVMEDIA_TYPE_VIDEO;  } }
 
 		/// <summary>
 		/// 
@@ -22,10 +24,10 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 		/// <returns></returns>
 		override public int init(AVCodecContext avctx)
 		{
+			if (avctx.priv_data == null) avctx.priv_data = new BMPContext();
 			var s = (BMPContext)avctx.priv_data;
 
-			//avcodec_get_frame_defaults(s.picture);
-			throw(new NotImplementedException());
+			Functions.avcodec_get_frame_defaults(s.picture);
 
 			avctx.coded_frame = s.picture;
 
@@ -41,8 +43,10 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 		{
 			var c = (BMPContext)avctx.priv_data;
 
-			//if (c.picture.data[0]) avctx.release_buffer(avctx, c.picture);
-			throw (new NotImplementedException());
+			if (!c.picture.data[0].IsNull)
+			{
+				avctx.release_buffer(avctx, c.picture);
+			}
 
 			return 0;
 		}
@@ -55,12 +59,11 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 		/// <param name="outdata_size"></param>
 		/// <param name="avpkt"></param>
 		/// <returns></returns>
-		public override int decode(AVCodecContext avctx, Pointer<byte> data, ref int data_size, AVPacket avpkt)
+		public override int decode(AVCodecContext avctx, ref object outputData, AVPacket avpkt)
 		{
 			Pointer<byte> buf = avpkt.data;
 			int buf_size = avpkt.size;
 			BMPContext s = (BMPContext)avctx.priv_data;
-			Pointer<AVFrame> picture = data.Cast<AVFrame>();
 			AVFrame p = s.picture;
 			uint fsize, hsize;
 			int width, height;
@@ -74,19 +77,22 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			int dsize;
 			Pointer<byte> buf0 = buf;
 
-			if (buf_size < 14){
+			if (buf_size < 14)
+			{
 				log.av_log(avctx, log.AV_LOG_ERROR, "buf size too small (%d)\n", buf_size);
 				return -1;
 			}
 
-			if (bytestream.get_byte(ref buf) != 'B' || bytestream.get_byte(ref buf) != 'M') {
+			if (bytestream.get_byte(ref buf) != 'B' || bytestream.get_byte(ref buf) != 'M')
+			{
 				log.av_log(avctx, log.AV_LOG_ERROR, "bad magic number\n");
 				return -1;
 			}
 
 			fsize = bytestream.get_le32(ref buf);
 
-			if (buf_size < fsize){
+			if (buf_size < fsize)
+			{
 				log.av_log(avctx, log.AV_LOG_ERROR, "not enough data (%d < %d), trying to decode anyway\n", buf_size, fsize);
 				fsize = (uint)buf_size;
 			}
@@ -94,10 +100,11 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			buf += 2; /* reserved1 */
 			buf += 2; /* reserved2 */
 
-			hsize = bytestream.get_le32(ref buf); /* header size */
-			ihsize = bytestream.get_le32(ref buf);       /* more header size */
+			hsize  = bytestream.get_le32(ref buf);  /* header size */
+			ihsize = bytestream.get_le32(ref buf); /* more header size */
 
-			if (ihsize + 14 > hsize){
+			if (ihsize + 14 > hsize)
+			{
 				log.av_log(avctx, log.AV_LOG_ERROR, "invalid header size %d\n", hsize);
 				return -1;
 			}
@@ -172,9 +179,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			avctx.width = width;
 			avctx.height = height > 0 ? height : -height;
 
-			//avctx.pix_fmt = PIX_FMT_NONE;
-			throw(new NotImplementedException());
-
+			avctx.pix_fmt = PixelFormat.PIX_FMT_NONE;
 
 			switch (depth)
 			{
@@ -200,8 +205,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 					else
 					{
 						log.av_log(avctx, log.AV_LOG_ERROR, "Unknown bitfields %0X %0X %0X\n", rgb[0], rgb[1], rgb[2]);
-						//return AVERROR(EINVAL);
-						throw (new NotImplementedException());
+						return error.AVERROR(error.EINVAL);
 					}
 			    }
 				else
@@ -225,8 +229,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 					else
 					{
 						log.av_log(avctx, log.AV_LOG_ERROR, "Unknown bitfields %0X %0X %0X\n", rgb[0], rgb[1], rgb[2]);
-						//return AVERROR(EINVAL);
-						throw (new NotImplementedException());
+						return error.AVERROR(error.EINVAL);
 					}
 				}
 			    break;
@@ -248,8 +251,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    }
 				else
 				{
-			        log.av_log(avctx, log.AV_LOG_ERROR, "Unknown palette for %d-colour BMP\n", 1<<depth);
-					throw (new NotImplementedException());
+			        log.av_log(avctx, log.AV_LOG_ERROR, "Unknown palette for %d-colour BMP\n", 1 << depth);
 					return -1;
 			    }
 			    break;
@@ -264,22 +266,16 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    return -1;
 			}
 
-			//if (p.data[0]) avctx.release_buffer(avctx, p);
-			throw(new NotImplementedException());
+			if (!p.data[0].IsNull) avctx.release_buffer(avctx, p);
 
 			p.reference = 0;
-			/*
 			if (avctx.get_buffer(avctx, p) < 0)
 			{
-			    //av_log(avctx, AV_LOG_ERROR, "get_buffer() failed\n");
-				throw(new NotImplementedException());
+			    log.av_log(avctx, log.AV_LOG_ERROR, "get_buffer() failed\n");
 			    return -1;
 			}
-			*/
-			throw(new NotImplementedException());
 
-			//p.pict_type = AV_PICTURE_TYPE_I;
-			throw(new NotImplementedException());
+			p.pict_type = AVPictureType.AV_PICTURE_TYPE_I;
 
 			p.key_frame = 1;
 
@@ -363,7 +359,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    }
 
 			    //ff_msrle_decode(avctx, (AVPicture)p, depth, buf, dsize);
-				throw(new NotImplementedException());
+				Unimplemented.Mark();
 
 			    if (height < 0)
 				{
@@ -396,8 +392,10 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    case 8:
 			    case 24:
 			    case 32:
-			        for(i = 0; i < avctx.height; i++){
-			            CLib.memcpy(ptr, buf, n);
+			        for (i = 0; i < avctx.height; i++)
+					{
+						//Console.WriteLine("i={0}, BytesPerRow={1}, linesize={2}", i, n, linesize);
+						CLib.memcpy(ptr, buf, n);
 			            buf += n;
 			            ptr += linesize;
 			        }
@@ -436,8 +434,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    }
 			}
 
-			picture[0] = s.picture;
-			data_size = Marshal.SizeOf(typeof(AVPicture));
+			outputData = s.picture;
 
 			return buf_size;
 		} // decode

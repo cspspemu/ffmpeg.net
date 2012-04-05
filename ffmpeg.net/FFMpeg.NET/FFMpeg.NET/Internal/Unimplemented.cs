@@ -11,5 +11,14 @@ namespace FFMpeg.NET.Internal
 	/// </summary>
 	public abstract class Unimplemented
 	{
+		static public void Mark()
+		{
+			throw new NotImplementedException();
+		}
+
+		internal static void MarkWarning(string Name)
+		{
+			Console.Error.WriteLine("MarkWarning! : {0}", Name);
+		}
 	}
 }

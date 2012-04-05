@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FFMpeg.NET.Internal.libavutil.avutil;
 
 namespace FFMpeg.NET.Internal.libavcodec.avcodec
 {
@@ -94,8 +95,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * - encoding: Set by libavcodec. for coded_picture (and set by user for input).
 	     * - decoding: Set by libavcodec.
 	     */
-	    //public AVPictureType pict_type;
-		public Unimplemented pict_type;
+	    public AVPictureType pict_type;
 
 	    /**
 	     * pointer to the first allocated byte of the picture. Can be used in get_buffer/release_buffer.

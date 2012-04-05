@@ -1,4 +1,7 @@
 
 *.suo
+*.testsettings
+*.vsmdi
 obj
 bin
+/ffmpeg.net/FFMpeg.NET/TestResults

@@ -44,7 +44,8 @@ namespace FFMpeg.NET.Internal.libavutil
 
 		static public void av_log(AVCodecContext avctx, int Level, string Format, params object[] Params)
 		{
-			throw new NotImplementedException();
+			Console.Error.WriteLine("{0}", Format);
+			//throw new NotImplementedException();
 		}
 	}
 }

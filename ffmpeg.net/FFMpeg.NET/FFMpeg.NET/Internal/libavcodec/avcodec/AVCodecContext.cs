@@ -69,6 +69,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 #endif
 
 	    //public void *priv_data;
+		//public Pointer<byte> priv_data;
 		public object priv_data;
 
 	    /**
@@ -949,7 +950,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * - decoding: Set by libavcodec, user can override.
 	     */
 	    //int (*get_buffer)(struct AVCodecContext *c, AVFrame *pic);
-		public Unimplemented get_buffer;
+		public Func<AVCodecContext, AVFrame, int> get_buffer;
 
 	    /**
 	     * Called to release buffers which were allocated with get_buffer.
@@ -961,7 +962,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * - decoding: Set by libavcodec, user can override.
 	     */
 	    //void (*release_buffer)(struct AVCodecContext *c, AVFrame *pic);
-		public Unimplemented release_buffer;
+		public Action<AVCodecContext, AVFrame> release_buffer;
 
 	    /**
 	     * Called at the beginning of a frame to get cr buffer for it.

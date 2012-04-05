@@ -22,15 +22,12 @@ namespace FFMpeg.NET.Internal
 
 		static public Pointer<byte> malloc(int num)
 		{
-			return new Pointer<byte>()
-			{
-				Data = new byte[num],
-				Offset = 0,
-			};
+			return Pointer<byte>.Create(new AllocatedMemory(new byte[num]), 0);
 		}
 
 		static public void free(Pointer<byte> Pointer)
 		{
+			Pointer.Data.Data = null;
 		}
 	}
 }

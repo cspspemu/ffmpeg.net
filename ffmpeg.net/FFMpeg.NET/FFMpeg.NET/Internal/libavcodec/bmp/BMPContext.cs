@@ -8,6 +8,6 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 {
 	public class BMPContext
 	{
-	    public AVFrame picture;
+		public AVFrame picture = new AVFrame();
 	}
 }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\AllocatedMemory.cs" />
     <Compile Include="Internal\CLib.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVAudioServiceType.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVChromaLocation.cs" />
@@ -65,16 +66,20 @@
     <Compile Include="Internal\libavcodec\avcodec\AVSubtitleType.cs" />
     <Compile Include="Internal\libavcodec\avcodec\CodecID.cs" />
     <Compile Include="Internal\libavcodec\avcodec\Constants.cs" />
+    <Compile Include="Internal\libavcodec\avcodec\Functions.cs" />
     <Compile Include="Internal\libavcodec\avcodec\Motion_Est_ID.cs" />
     <Compile Include="Internal\libavcodec\avcodec\RcOverride.cs" />
     <Compile Include="Internal\libavcodec\avcodec\_avcodec.cs" />
     <Compile Include="Internal\libavcodec\bmp\BiCompression.cs" />
     <Compile Include="Internal\libavcodec\bmp\BMPContext.cs" />
     <Compile Include="Internal\libavcodec\bmp\ff_bmp_decoder.cs" />
-    <Compile Include="Internal\libavcodec\bmp\_bmp.cs" />
+    <Compile Include="Internal\libavutil\avutil\AVMediaType.cs" />
+    <Compile Include="Internal\libavutil\avutil\AVPictureType.cs" />
+    <Compile Include="Internal\libavutil\avutil\_avutil.cs" />
     <Compile Include="Internal\libavutil\bswap.cs" />
     <Compile Include="Internal\libavutil\bytestream.cs" />
     <Compile Include="Internal\libavutil\common\common.cs" />
+    <Compile Include="Internal\libavutil\error.cs" />
     <Compile Include="Internal\libavutil\log.cs" />
     <Compile Include="Internal\libavutil\pixfmt.cs" />
     <Compile Include="Internal\libavutil\_log.cs" />
@@ -85,6 +90,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Internal\libavcodec\msrle\" />
     <Folder Include="Internal\libavformat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

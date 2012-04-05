@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFMpeg.NET", "FFMpeg.NET\FFMpeg.NET.csproj", "{6A814899-8E58-4C52-8D6C-FC6F73A39B9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFMpeg.NET.Tests", "FFMpeg.NET.Tests\FFMpeg.NET.Tests.csproj", "{8BE390BD-6188-4D78-A72F-8831A2B9210C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{93B5DCD7-C554-43C0-B485-9DC964F9A066}"
+	ProjectSection(SolutionItems) = preProject
+		FFMpeg.NET.vsmdi = FFMpeg.NET.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = FFMpeg.NET.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -13,6 +25,10 @@ Global
 		{6A814899-8E58-4C52-8D6C-FC6F73A39B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A814899-8E58-4C52-8D6C-FC6F73A39B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A814899-8E58-4C52-8D6C-FC6F73A39B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE390BD-6188-4D78-A72F-8831A2B9210C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE390BD-6188-4D78-A72F-8831A2B9210C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE390BD-6188-4D78-A72F-8831A2B9210C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE390BD-6188-4D78-A72F-8831A2B9210C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

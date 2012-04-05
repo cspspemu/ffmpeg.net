@@ -439,13 +439,6 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 //int avcodec_copy_context(AVCodecContext *dest, const AVCodecContext *src);
 
 ///**
-// * Set the fields of the given AVFrame to default values.
-// *
-// * @param pic The AVFrame of which the fields should be set to default values.
-// */
-//void avcodec_get_frame_defaults(AVFrame *pic);
-
-///**
 // * Allocate an AVFrame and set its fields to default values.  The resulting
 // * struct can be deallocated by simply calling av_free().
 // *

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FFMpeg.NET.Internal.libavutil.avutil;
 
 namespace FFMpeg.NET.Internal.libavcodec.avcodec
 {
@@ -27,8 +28,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	    //const char *long_name;
 		abstract public string long_name { get; }
 
-	    //enum AVMediaType type;
-		public Unimplemented type;
+		abstract public AVMediaType type { get; }
 
 		abstract public CodecID id { get; }
 
@@ -66,7 +66,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * New public fields should be added right above.
 	     *****************************************************************
 	     */
-	    public int priv_data_size;
+	    public int priv_data_size; // NOT USED in C# since the data is an object.
 	    public AVCodec next;
 	    /**
 	     * @name Frame-level threading support functions
@@ -128,7 +128,8 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 
 	    //int (*decode)(AVCodecContext *, void *outdata, int *outdata_size, AVPacket *avpkt);
 		//public Unimplemented decode;
-		virtual public int decode(AVCodecContext avctx, Pointer<byte> outdata, ref int outdata_size, AVPacket avpkt)
+		//virtual public int decode(AVCodecContext avctx, Pointer<byte> outdata, ref int outdata_size, AVPacket avpkt)
+		virtual public int decode(AVCodecContext avctx, ref object outdata, AVPacket avpkt)
 		{
 			throw (new NotImplementedException());
 		}
