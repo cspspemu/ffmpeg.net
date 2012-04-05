@@ -335,7 +335,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 				{
 					for (i = 0; i < colors; i++)
 					{
-						var a = p.data[1].Cast<uint>();
+						var a = p.data[1].CastPointer<uint>();
 						a[i] = (uint)((0xff << 24) | bytestream.get_le24(ref buf));
 					}
 			    }
@@ -343,7 +343,7 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 				{
 					for (i = 0; i < colors; i++)
 					{
-						var a = p.data[1].Cast<uint>();
+						var a = p.data[1].CastPointer<uint>();
 						a[i] = (uint)((0xFFU << 24) | bytestream.get_le32(ref buf));
 					}
 			    }
@@ -414,8 +414,8 @@ namespace FFMpeg.NET.Internal.libavcodec.bmp
 			    case 16:
 			        for (i = 0; i < avctx.height; i++)
 					{
-			            Pointer<ushort> src = buf.Cast<ushort>();
-						Pointer<ushort> dst = ptr.Cast<ushort>();
+			            Pointer<ushort> src = buf.CastPointer<ushort>();
+						Pointer<ushort> dst = ptr.CastPointer<ushort>();
 
 						for (int j = 0; j < avctx.width; j++)
 						{

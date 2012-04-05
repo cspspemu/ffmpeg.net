@@ -169,14 +169,6 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 //void avcodec_get_chroma_sub_sample(enum PixelFormat pix_fmt, int *h_shift, int *v_shift);
 
 ///**
-// * Get the name of a codec.
-// * @return  a static string identifying the codec; never NULL
-// */
-//const char *avcodec_get_name(enum CodecID id);
-
-//void avcodec_set_dimensions(AVCodecContext *s, int width, int height);
-
-///**
 // * Return a value representing the fourCC code associated to the
 // * pixel format pix_fmt, or 0 if no associated fourCC code can be
 // * found.

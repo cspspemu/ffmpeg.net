@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Internal\AllocatedMemory.cs" />
     <Compile Include="Internal\CLib.cs" />
+    <Compile Include="Internal\LangUtils.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVAudioServiceType.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVChromaLocation.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVCodec.cs" />
@@ -73,6 +74,10 @@
     <Compile Include="Internal\libavcodec\bmp\BiCompression.cs" />
     <Compile Include="Internal\libavcodec\bmp\BMPContext.cs" />
     <Compile Include="Internal\libavcodec\bmp\ff_bmp_decoder.cs" />
+    <Compile Include="Internal\libavcodec\targa\ff_targa_decoder.cs" />
+    <Compile Include="Internal\libavcodec\targa\TargaCompr.cs" />
+    <Compile Include="Internal\libavcodec\targa\TargaContext.cs" />
+    <Compile Include="Internal\libavcodec\targa\_targa.cs" />
     <Compile Include="Internal\libavutil\avutil\AVMediaType.cs" />
     <Compile Include="Internal\libavutil\avutil\AVPictureType.cs" />
     <Compile Include="Internal\libavutil\avutil\_avutil.cs" />
@@ -80,6 +85,7 @@
     <Compile Include="Internal\libavutil\bytestream.cs" />
     <Compile Include="Internal\libavutil\common\common.cs" />
     <Compile Include="Internal\libavutil\error.cs" />
+    <Compile Include="Internal\libavutil\imgutils.cs" />
     <Compile Include="Internal\libavutil\log.cs" />
     <Compile Include="Internal\libavutil\pixfmt.cs" />
     <Compile Include="Internal\libavutil\_log.cs" />

@@ -46,7 +46,7 @@ namespace FFMpeg.NET.Internal
 			}
 		}
 
-		public Pointer<NewType> Cast<NewType>()
+		public Pointer<NewType> CastPointer<NewType>()
 		{
 			return new Pointer<NewType>(this.Data, this.Offset);
 		}
@@ -69,6 +69,12 @@ namespace FFMpeg.NET.Internal
 			);
 		}
 
+		public static int operator -(Pointer<TType> Left, Pointer<TType> Right)
+		{
+			if (Left.Data != Right.Data) throw(new InvalidOperationException("Pointers are in different memory chunks and can't be compared"));
+			return (int)((Left.Offset - Right.Offset) / Left.EntrySize);
+		}
+
 		public bool IsNull { get { return (Data == null) || (Data.Data == null); } }
 
 		static public Pointer<TType> Create(AllocatedMemory AllocatedMemory, int Offset = 0)
@@ -83,7 +89,32 @@ namespace FFMpeg.NET.Internal
 			Array.Copy(this.Data.Data, Offset, Bytes, 0, Count);
 			return Bytes;
 		}
+
+		public Pointer<TType> GetOffsetPointer(int Offset)
+		{
+			return this + Offset;
+		}
+
+		public void SwapValuesAtOffsets(int Offset1, int Offset2)
+		{
+			var Value1 = this[Offset1];
+			var Value2 = this[Offset2];
+
+			this[Offset2] = Value1;
+			this[Offset1] = Value2;
+		}
+
+		/*
+		public void GetRef(int Offset, UpdateRefDelegate<TType> Updater)
+		{
+			var Value = this[Offset];
+			Updater(ref Value);
+			this[Offset] = Value;
+		}
+		*/
 	}
+
+	//delegate void UpdateRefDelegate<TType>(ref TType RefValue);
 #else
 	public abstract class Pointer<TType>
 	{

@@ -17,5 +17,20 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 			Unimplemented.MarkWarning("avcodec_get_frame_defaults");
 			//throw(new NotImplementedException());
 		}
+
+		/**
+		 * Get the name of a codec.
+		 * @return  a static string identifying the codec; never NULL
+		 */
+		static public string avcodec_get_name(CodecID id)
+		{
+			throw(new NotImplementedException());
+		}
+
+		static public void avcodec_set_dimensions(AVCodecContext s, int width, int height)
+		{
+			s.width = width;
+			s.height = height;
+		}
 	}
 }

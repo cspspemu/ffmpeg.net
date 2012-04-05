@@ -48,7 +48,7 @@
     <Compile Include="bytestreamTest.cs" />
     <Compile Include="CLibTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ff_bmp_decoderTest.cs" />
+    <Compile Include="AVCodecTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FFMpeg.NET\FFMpeg.NET.csproj">
