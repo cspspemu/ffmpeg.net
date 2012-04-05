@@ -80,16 +80,16 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 		/* /Fx */
 		/* codec capabilities */
 
-		public uint CODEC_CAP_DRAW_HORIZ_BAND = 0x0001; ///< Decoder can use draw_horiz_band callback.
+		public const uint CODEC_CAP_DRAW_HORIZ_BAND = 0x0001; ///< Decoder can use draw_horiz_band callback.
 		/**
 		 * Codec uses get_buffer() for allocating buffers and supports custom allocators.
 		 * If not set, it might not use get_buffer() at all or use operations that
 		 * assume the buffer was allocated by avcodec_default_get_buffer.
 		 */
-		public uint CODEC_CAP_DR1             = 0x0002;
-		public uint CODEC_CAP_TRUNCATED       = 0x0008;
+		public const uint CODEC_CAP_DR1             = 0x0002;
+		public const uint CODEC_CAP_TRUNCATED = 0x0008;
 		/* Codec can export data for HW decoding (XvMC). */
-		public uint CODEC_CAP_HWACCEL         = 0x0010;
+		public const uint CODEC_CAP_HWACCEL = 0x0010;
 
 		/**
 		 * Encoder or decoder requires flushing with NULL input at the end in order to

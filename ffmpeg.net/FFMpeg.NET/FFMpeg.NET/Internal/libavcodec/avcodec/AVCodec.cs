@@ -36,7 +36,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * Codec capabilities.
 	     * see CODEC_CAP_*
 	     */
-	    public int capabilities;
+		virtual public uint capabilities { get { return 0; } }
 
 	    //const AVRational *supported_framerates; ///< array of supported framerates, or NULL if any, array is terminated by {0,0}
 		public Unimplemented supported_framerates;
@@ -127,9 +127,17 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 		public Unimplemented encode2;
 
 	    //int (*decode)(AVCodecContext *, void *outdata, int *outdata_size, AVPacket *avpkt);
-		public Unimplemented decode;
+		//public Unimplemented decode;
+		virtual public int decode(AVCodecContext avctx, Pointer<byte> outdata, ref int outdata_size, AVPacket avpkt)
+		{
+			throw (new NotImplementedException());
+		}
 
-	    //int (*close)(AVCodecContext *);
+	    /// <summary>
+		/// int (*close)(AVCodecContext *);
+	    /// </summary>
+	    /// <param name="avctx"></param>
+	    /// <returns></returns>
 		virtual public int close(AVCodecContext avctx)
 		{
 			throw(new NotImplementedException());

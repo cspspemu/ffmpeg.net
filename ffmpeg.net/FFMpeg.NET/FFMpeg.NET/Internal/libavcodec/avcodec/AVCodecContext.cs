@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FFMpeg.NET.Internal.libavutil;
 
 namespace FFMpeg.NET.Internal.libavcodec.avcodec
 {
@@ -226,8 +227,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * - encoding: Set by user.
 	     * - decoding: Set by user if known, overridden by libavcodec if known
 	     */
-	    //enum PixelFormat pix_fmt;
-		public Unimplemented pix_fmt;
+		public PixelFormat pix_fmt;
 
 	    /**
 	     * Motion estimation algorithm used for video coding.

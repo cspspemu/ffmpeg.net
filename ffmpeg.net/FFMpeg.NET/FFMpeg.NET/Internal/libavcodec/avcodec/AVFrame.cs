@@ -25,7 +25,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	     * - decoding: set by AVCodecContext.get_buffer()
 	     */
 	    //uint8_t *data[AV_NUM_DATA_POINTERS];
-		public Unimplemented data;
+		public Pointer<byte>[] data = new Pointer<byte>[Constants.AV_NUM_DATA_POINTERS];
 
 	    /**
 	     * Size, in bytes, of the data for each picture/channel plane.

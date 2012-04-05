@@ -26,7 +26,7 @@ namespace FFMpeg.NET.Internal.libavcodec.avcodec
 	    public long dts;
 
 	    //uint8_t *data;
-		public byte[] data;
+		public Pointer<byte> data;
 
 	    public int   size;
 	    public int   stream_index;

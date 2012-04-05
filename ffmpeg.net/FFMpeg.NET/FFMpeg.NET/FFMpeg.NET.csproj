@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\CLib.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVAudioServiceType.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVChromaLocation.cs" />
     <Compile Include="Internal\libavcodec\avcodec\AVCodec.cs" />
@@ -71,7 +72,12 @@
     <Compile Include="Internal\libavcodec\bmp\BMPContext.cs" />
     <Compile Include="Internal\libavcodec\bmp\ff_bmp_decoder.cs" />
     <Compile Include="Internal\libavcodec\bmp\_bmp.cs" />
+    <Compile Include="Internal\libavutil\bswap.cs" />
+    <Compile Include="Internal\libavutil\bytestream.cs" />
     <Compile Include="Internal\libavutil\common\common.cs" />
+    <Compile Include="Internal\libavutil\pixfmt.cs" />
+    <Compile Include="Internal\libavutil\_pixfmt.cs" />
+    <Compile Include="Internal\Pointer.cs" />
     <Compile Include="Internal\Unimplemented.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
