@@ -74,6 +74,11 @@
     <Compile Include="Internal\libavcodec\bmp\BiCompression.cs" />
     <Compile Include="Internal\libavcodec\bmp\BMPContext.cs" />
     <Compile Include="Internal\libavcodec\bmp\ff_bmp_decoder.cs" />
+    <Compile Include="Internal\libavcodec\mpegaudiodec\ff_mp3_decoder.cs" />
+    <Compile Include="Internal\libavcodec\mpegaudiodec\GranuleDef.cs" />
+    <Compile Include="Internal\libavcodec\mpegaudiodec\MPADecodeContext.cs" />
+    <Compile Include="Internal\libavcodec\mpegaudiodec\MpegUtils.cs" />
+    <Compile Include="Internal\libavcodec\mpegaudiodec\_mpegaudiodec.cs" />
     <Compile Include="Internal\libavcodec\targa\ff_targa_decoder.cs" />
     <Compile Include="Internal\libavcodec\targa\TargaCompr.cs" />
     <Compile Include="Internal\libavcodec\targa\TargaContext.cs" />
